@@ -1,0 +1,322 @@
+{
+ "question": "Is intermittent fasting proven to extend human lifespan?",
+ "generated_at": "2026-10-09T20:53:39.876953+00:00",
+ "executive_summary": "Evidence for lifespan extension is strong in rodents but not established in humans. Human trials are short and show no lifespan advantage, inflammation findings are mixed, and the apparent agency consensus traces to a single wire report. Short-term weight-loss parity with calorie restriction is well supported.",
+ "claims": [
+  {
+   "claim_id": "C1",
+   "text": "Intermittent fasting extends lifespan in rodent models.",
+   "status": "supported",
+   "supporting_source_ids": [
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+   ],
+   "contradicting_source_ids": [],
+   "rationale": "Several independent peer-reviewed sources report consistent lifespan extension in mice and rats, and a meta-analysis pools the effect.",
+   "uncertainty": "Animal models only; heterogeneity across protocols is high and results may not transfer to humans."
+  },
+  {
+   "claim_id": "C2",
+   "text": "Human trials confirm the same lifespan effect seen in animals.",
+   "status": "contradicted",
+   "supporting_source_ids": [
+    "S6"
+   ],
+   "contradicting_source_ids": [
+    "S5",
+    "S6",
+    "S7",
+    "S8"
+   ],
+   "rationale": "Available human trials show no lifespan advantage and none are long enough to measure lifespan. Sources agree the animal result is not yet replicated.",
+   "uncertainty": "Absence of evidence is not evidence of absence: trials are short and use surrogate markers."
+  },
+  {
+   "claim_id": "C3",
+   "text": "Intermittent fasting reduces markers of inflammation.",
+   "status": "mixed",
+   "supporting_source_ids": [
+    "S9",
+    "S10",
+    "S12"
+   ],
+   "contradicting_source_ids": [
+    "S11"
+   ],
+   "rationale": "Pooled trials report small reductions in CRP and IL-6, but a review of five trials found two with no change. Popular coverage overstates the effect.",
+   "uncertainty": "Small effect sizes, variable protocols, and one supporting source cites no primary data."
+  },
+  {
+   "claim_id": "C4",
+   "text": "Major health agencies recommend intermittent fasting for longevity.",
+   "status": "insufficient_evidence",
+   "supporting_source_ids": [],
+   "contradicting_source_ids": [],
+   "rationale": "Retrieved guidance does not mention intermittent fasting as a longevity strategy. The apparent consensus in news coverage traces to a single wire report.",
+   "uncertainty": "Snippets only; full guidance documents were not read, and recommendations may exist outside retrieved results."
+  },
+  {
+   "claim_id": "C5",
+   "text": "Intermittent fasting produces weight loss comparable to continuous calorie restriction.",
+   "status": "supported",
+   "supporting_source_ids": [
+    "S15",
+    "S16",
+    "S17"
+   ],
+   "contradicting_source_ids": [],
+   "rationale": "A randomized-trial meta-analysis and a clinical overview agree on comparable short-term weight loss.",
+   "uncertainty": "Follow-up is mostly under 12 months; one supporting source is a news summary of the meta-analysis."
+  }
+ ],
+ "sources": [
+  {
+   "source_id": "S1",
+   "title": "Time-restricted feeding extends lifespan in mouse cohorts",
+   "url": "https://demo-journal.example/article/s1",
+   "snippet": "Across three inbred strains, alternate-day feeding extended median lifespan by 18-27% versus ad libitum controls.",
+   "source_type": "scholar",
+   "published_at": "2024",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-journal.example"
+  },
+  {
+   "source_id": "S2",
+   "title": "Caloric restriction mimetics: a mechanistic review",
+   "url": "https://demo-cellpress.example/article/s2",
+   "snippet": "Reviews autophagy and mTOR signalling changes in rodents under intermittent energy restriction.",
+   "source_type": "scholar",
+   "published_at": "2023",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-cellpress.example"
+  },
+  {
+   "source_id": "S3",
+   "title": "Meta-analysis of rodent fasting protocols and longevity",
+   "url": "https://demo-pubmed.example/article/s3",
+   "snippet": "Pooled analysis of 41 rodent studies shows consistent lifespan extension; heterogeneity is high.",
+   "source_type": "scholar",
+   "published_at": "2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-pubmed.example"
+  },
+  {
+   "source_id": "S4",
+   "title": "Fasting adds years to mice, researchers report",
+   "url": "https://demo-dailyscience.example/article/s4",
+   "snippet": "Coverage of the mouse lifespan findings. Lead author cautions against extrapolating to people.",
+   "source_type": "news",
+   "published_at": "Sep 2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-dailyscience.example"
+  },
+  {
+   "source_id": "S5",
+   "title": "12-month randomized trial of alternate-day fasting in adults",
+   "url": "https://demo-trials.example/article/s5",
+   "snippet": "No significant difference in mortality-related biomarkers versus standard calorie restriction after 12 months.",
+   "source_type": "scholar",
+   "published_at": "2024",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-trials.example"
+  },
+  {
+   "source_id": "S6",
+   "title": "Long-term cardiometabolic outcomes of intermittent fasting: a systematic review",
+   "url": "https://demo-medjournal.example/article/s6",
+   "snippet": "No human trial has followed participants long enough to measure lifespan; surrogate markers show modest benefit.",
+   "source_type": "scholar",
+   "published_at": "2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-medjournal.example"
+  },
+  {
+   "source_id": "S7",
+   "title": "Human fasting trials fail to show longevity edge",
+   "url": "https://demo-healthwire.example/article/s7",
+   "snippet": "Reports that recent human trials found no lifespan advantage over regular calorie reduction.",
+   "source_type": "news",
+   "published_at": "Oct 2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-healthwire.example"
+  },
+  {
+   "source_id": "S8",
+   "title": "What the evidence says about intermittent fasting",
+   "url": "https://demo-nutritioninst.example/article/s8",
+   "snippet": "Plain-language summary: weight loss benefits are real, longevity claims in humans remain unproven.",
+   "source_type": "web",
+   "published_at": "2026",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-nutritioninst.example"
+  },
+  {
+   "source_id": "S9",
+   "title": "Intermittent fasting and C-reactive protein: pooled trial data",
+   "url": "https://demo-inflammation.example/article/s9",
+   "snippet": "Several trials report reductions in CRP and IL-6; effect sizes are small and variable.",
+   "source_type": "scholar",
+   "published_at": "2024",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-inflammation.example"
+  },
+  {
+   "source_id": "S10",
+   "title": "Fasting calms inflammation, study finds",
+   "url": "https://demo-wellnesstoday.example/article/s10",
+   "snippet": "Reports reductions in inflammatory markers after eight weeks of time-restricted eating.",
+   "source_type": "news",
+   "published_at": "Aug 2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-wellnesstoday.example"
+  },
+  {
+   "source_id": "S11",
+   "title": "Fasting-induced changes in immune cell profiles: conflicting results",
+   "url": "https://demo-immunology.example/article/s11",
+   "snippet": "Two of five trials found no change in inflammatory markers; one found a transient rise in week one.",
+   "source_type": "scholar",
+   "published_at": "2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-immunology.example"
+  },
+  {
+   "source_id": "S12",
+   "title": "Top 10 fasting benefits (no sources cited)",
+   "url": "https://demo-fitnessblog.example/article/s12",
+   "snippet": "Lists inflammation reduction among fasting benefits without citing primary data.",
+   "source_type": "web",
+   "published_at": "2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-fitnessblog.example"
+  },
+  {
+   "source_id": "S13",
+   "title": "Official dietary guidance for healthy longevity",
+   "url": "https://demo-globalhealth.example/article/s13",
+   "snippet": "Public health guidance recommends balanced diets and physical activity; does not mention intermittent fasting as a longevity strategy.",
+   "source_type": "web",
+   "published_at": "2026",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-globalhealth.example"
+  },
+  {
+   "source_id": "S14",
+   "title": "Health agency issues no fasting recommendation",
+   "url": "https://demo-wireservice.example/article/s14",
+   "snippet": "Wire report on the guidance document. Syndicated across many outlets.",
+   "source_type": "news",
+   "published_at": "Jan 2026",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-wireservice.example"
+  },
+  {
+   "source_id": "S15",
+   "title": "Intermittent fasting versus continuous restriction for weight loss: RCT meta-analysis",
+   "url": "https://demo-obesityres.example/article/s15",
+   "snippet": "Both approaches produce comparable short-term weight loss of 3-8% over 3-12 months.",
+   "source_type": "scholar",
+   "published_at": "2024",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-obesityres.example"
+  },
+  {
+   "source_id": "S16",
+   "title": "Fasting works for weight loss, large review confirms",
+   "url": "https://demo-dailyhealth.example/article/s16",
+   "snippet": "Summarises the weight-loss meta-analysis for a general audience.",
+   "source_type": "news",
+   "published_at": "Nov 2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-dailyhealth.example"
+  },
+  {
+   "source_id": "S17",
+   "title": "Intermittent fasting: a clinician's overview",
+   "url": "https://demo-clinic.example/article/s17",
+   "snippet": "Notes that adherence is similar to other diets and that benefits appear driven by calorie reduction.",
+   "source_type": "web",
+   "published_at": "2025",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-clinic.example"
+  },
+  {
+   "source_id": "S18",
+   "title": "Fasting windows and sleep quality in adults",
+   "url": "https://demo-sleepstudy.example/article/s18",
+   "snippet": "Observational data suggest late-night eating windows are linked to poorer sleep; interventional evidence is limited.",
+   "source_type": "scholar",
+   "published_at": "2023",
+   "retrieved_at": "2026-10-09T20:53:39.876953+00:00",
+   "domain": "demo-sleepstudy.example"
+  }
+ ],
+ "evidence_matrix": [
+  {
+   "claim_id": "C1",
+   "text": "Intermittent fasting extends lifespan in rodent models.",
+   "status": "supported",
+   "supporting_count": 4,
+   "contradicting_count": 0,
+   "is_fragile": false,
+   "consensus_score": 1.0,
+   "controversy_index": 0.0,
+   "domain_diversity": 4
+  },
+  {
+   "claim_id": "C2",
+   "text": "Human trials confirm the same lifespan effect seen in animals.",
+   "status": "contradicted",
+   "supporting_count": 1,
+   "contradicting_count": 4,
+   "is_fragile": false,
+   "consensus_score": 0.8,
+   "controversy_index": 0.4,
+   "domain_diversity": 4
+  },
+  {
+   "claim_id": "C3",
+   "text": "Intermittent fasting reduces markers of inflammation.",
+   "status": "mixed",
+   "supporting_count": 3,
+   "contradicting_count": 1,
+   "is_fragile": false,
+   "consensus_score": 0.75,
+   "controversy_index": 0.5,
+   "domain_diversity": 4
+  },
+  {
+   "claim_id": "C4",
+   "text": "Major health agencies recommend intermittent fasting for longevity.",
+   "status": "insufficient_evidence",
+   "supporting_count": 0,
+   "contradicting_count": 0,
+   "is_fragile": true,
+   "consensus_score": 0.0,
+   "controversy_index": 0.0,
+   "domain_diversity": 0
+  },
+  {
+   "claim_id": "C5",
+   "text": "Intermittent fasting produces weight loss comparable to continuous calorie restriction.",
+   "status": "supported",
+   "supporting_count": 3,
+   "contradicting_count": 0,
+   "is_fragile": true,
+   "consensus_score": 1.0,
+   "controversy_index": 0.0,
+   "domain_diversity": 3
+  }
+ ],
+ "limitations": [
+  "DEMO DATA: illustrative content with placeholder domains, not real search results."
+ ],
+ "search_queries_used": [
+  "intermittent fasting lifespan humans",
+  "intermittent fasting longevity evidence",
+  "intermittent fasting criticism OR debunked",
+  "intermittent fasting inflammation trials"
+ ]
+}
