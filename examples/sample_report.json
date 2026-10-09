@@ -1,0 +1,120 @@
+{
+  "question": "Does intermittent fasting provide superior longevity benefits compared to standard caloric restriction?",
+  "generated_at": "2026-10-10T02:00:00Z",
+  "executive_summary": "Analysis of current biomedical literature reveals that intermittent fasting (IF) produces significant metabolic improvements, including enhanced insulin sensitivity, cellular autophagy, and reduced markers of systemic inflammation. However, current human randomized controlled trials indicate that these benefits are largely comparable to equivalent continuous caloric restriction (CR) rather than fundamentally superior. While rodent studies frequently show pronounced lifespan extension from fasting regimens, human trials remain constrained by adherence variations and lack of multi-decade longitudinal survival data.",
+  "claims": [
+    {
+      "claim_id": "C1",
+      "text": "Intermittent fasting triggers cellular autophagy and improves metabolic biomarkers in humans.",
+      "status": "supported",
+      "supporting_source_ids": ["S1", "S3"],
+      "contradicting_source_ids": [],
+      "rationale": "Clinical reviews and peer-reviewed trials demonstrate upregulated autophagy markers and improved lipid/glucose regulation during periodic fasting windows.",
+      "uncertainty": "Direct measurement of human in vivo autophagy remains methodologically challenging compared to model organisms."
+    },
+    {
+      "claim_id": "C2",
+      "text": "Intermittent fasting provides significantly superior long-term survival extension over isocaloric continuous energy restriction in humans.",
+      "status": "contradicted",
+      "supporting_source_ids": [],
+      "contradicting_source_ids": ["S2", "S4"],
+      "rationale": "Major clinical meta-analyses find no statistically significant difference in long-term mortality or fat loss when calorie intake is strictly matched between intermittent and continuous restriction.",
+      "uncertainty": "Multi-decade human longevity trials are practically unfeasible; conclusions rely on surrogate biomarker outcomes."
+    },
+    {
+      "claim_id": "C3",
+      "text": "Time-restricted eating protocols yield higher real-world dietary adherence compared to standard daily caloric counting.",
+      "status": "mixed",
+      "supporting_source_ids": ["S3"],
+      "contradicting_source_ids": ["S2"],
+      "rationale": "Some participant cohorts report simpler behavioral compliance with temporal windows, while other studies document drop-out rates exceeding 30% due to social schedule friction.",
+      "uncertainty": "Adherence varies significantly based on socioeconomic factors and work shifts."
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "S1",
+      "title": "Effects of Intermittent Fasting on Health, Aging, and Disease",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMra1905136",
+      "snippet": "Preclinical studies and clinical trials have shown that intermittent fasting has broad-spectrum benefits for many health conditions, such as obesity, diabetes mellitus, cardiovascular disease, cancers, and neurologic disorders. Cellular responses include enhanced autophagy and mitochondrial resistance.",
+      "source_type": "scholar",
+      "published_at": "2020",
+      "retrieved_at": "2026-10-10T02:00:00Z",
+      "domain": "nejm.org"
+    },
+    {
+      "source_id": "S2",
+      "title": "Calorie Restriction with or without Time-Restricted Eating in Weight Loss",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2114833",
+      "snippet": "Among patients with obesity, a regimen of time-restricted eating was not more beneficial with respect to reduction in body weight, body fat, or metabolic risk factors than daily calorie restriction alone over a 12-month period.",
+      "source_type": "scholar",
+      "published_at": "2022",
+      "retrieved_at": "2026-10-10T02:00:00Z",
+      "domain": "nejm.org"
+    },
+    {
+      "source_id": "S3",
+      "title": "Clinical Insights: How Fasting Windows Alter Cardiometabolic Markers",
+      "url": "https://www.nature.com/articles/s41574-021-00612-0",
+      "snippet": "Time-restricted feeding regimens align energy intake with circadian rhythms, conferring metabolic advantages and subjective ease of compliance for diverse patient populations.",
+      "source_type": "scholar",
+      "published_at": "2022",
+      "retrieved_at": "2026-10-10T02:00:00Z",
+      "domain": "nature.com"
+    },
+    {
+      "source_id": "S4",
+      "title": "Meta-analysis of Intermittent Fasting versus Continuous Energy Restriction",
+      "url": "https://www.bmj.com/content/371/bmj.m4202",
+      "snippet": "Systematic review and meta-analysis of 40 trials revealed equivalent efficacy between intermittent fasting and continuous calorie restriction for weight management, glycaemic control, and vascular biomarkers.",
+      "source_type": "news",
+      "published_at": "2021",
+      "retrieved_at": "2026-10-10T02:00:00Z",
+      "domain": "bmj.com"
+    }
+  ],
+  "evidence_matrix": [
+    {
+      "claim_id": "C1",
+      "text": "Intermittent fasting triggers cellular autophagy and improves metabolic biomarkers in humans.",
+      "status": "supported",
+      "supporting_count": 2,
+      "contradicting_count": 0,
+      "is_fragile": false,
+      "consensus_score": 1.0,
+      "controversy_index": 0.0,
+      "domain_diversity": 2
+    },
+    {
+      "claim_id": "C2",
+      "text": "Intermittent fasting provides significantly superior long-term survival extension over isocaloric continuous energy restriction in humans.",
+      "status": "contradicted",
+      "supporting_count": 0,
+      "contradicting_count": 2,
+      "is_fragile": false,
+      "consensus_score": 1.0,
+      "controversy_index": 0.0,
+      "domain_diversity": 2
+    },
+    {
+      "claim_id": "C3",
+      "text": "Time-restricted eating protocols yield higher real-world dietary adherence compared to standard daily caloric counting.",
+      "status": "mixed",
+      "supporting_count": 1,
+      "contradicting_count": 1,
+      "is_fragile": false,
+      "consensus_score": 0.0,
+      "controversy_index": 1.0,
+      "domain_diversity": 2
+    }
+  ],
+  "limitations": [
+    "Evaluations are based on 12 to 24 month trial durations; multi-decade lifespan data in humans remains unavailable.",
+    "Adherence outcomes vary greatly across demographic cohorts and shift-work profiles."
+  ],
+  "search_queries_used": [
+    "intermittent fasting vs caloric restriction longevity study",
+    "intermittent fasting human trials autophagy evidence",
+    "intermittent fasting mortality benefit refuted OR debunked"
+  ]
+}
