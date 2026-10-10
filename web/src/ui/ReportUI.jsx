@@ -17,7 +17,7 @@ function domainRatio(claim, byId) {
 }
 
 /* ---- top bar ---- */
-export function TopBar({ report, onBack, isDemo }) {
+export function TopBar({ report, onBack, isDemo, onToggleGuide, showGuide }) {
   const download = () => {
     const blob = new Blob([JSON.stringify(report, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
@@ -36,7 +36,12 @@ export function TopBar({ report, onBack, isDemo }) {
       <div className="tb-meta">
         {new Date(report.generated_at).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })} · {report.sources.length} sources · {report.claims.length} claims
       </div>
-      <button className="ghost" onClick={download}>Export JSON</button>
+      <div style={{ display: "flex", gap: "8px" }}>
+        <button className="ghost" onClick={onToggleGuide} style={{ borderColor: showGuide ? "var(--accent)" : "var(--line)" }}>
+          {showGuide ? "✕ Close Guide" : "💡 How to Read"}
+        </button>
+        <button className="ghost" onClick={download}>Export JSON</button>
+      </div>
     </motion.header>
   );
 }
@@ -228,6 +233,65 @@ export function Ledger({ report, selectedId }) {
           </motion.div>
         )}
       </AnimatePresence>
+    </motion.div>
+  );
+}
+
+/* ---- guide overlay modal ---- */
+export function GuideModal({ onClose }) {
+  return (
+    <motion.div
+      className="guide-modal-wrap"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="guide-modal glass"
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h3 style={{ margin: 0 }}>🔍 How EvidenceLens Works</h3>
+          <button className="ghost" onClick={onClose} style={{ padding: "4px 10px" }}>✕</button>
+        </div>
+        <p style={{ color: "var(--muted)", fontSize: "0.88rem", marginTop: "8px" }}>
+          EvidenceLens breaks free of black-box summaries by structuring research into an adversarial epistemic graph:
+        </p>
+
+        <div className="guide-grid">
+          <div className="guide-card">
+            <h4>🌐 1. Multi-Engine SerpApi Retrieval</h4>
+            <p>We query <strong>Google Web</strong> (broad context), <strong>Google News</strong> (fresh reporting), and <strong>Google Scholar</strong> (peer-reviewed research) to avoid blog bias.</p>
+          </div>
+          <div className="guide-card">
+            <h4>⚡ 2. 3D Observatory Visuals</h4>
+            <p>
+              • <strong>Glowing Center:</strong> Your research question.<br />
+              • <strong>Orbiting Nodes:</strong> Atomic claims (Green=Supported, Red=Contradicted, Yellow=Mixed).<br />
+              • <strong>Satellites & Beams:</strong> Green beams indicate support; dashed red beams indicate counter-evidence.
+            </p>
+          </div>
+          <div className="guide-card">
+            <h4>🛡️ 3. "Fragile Origin" (Echo Detection)</h4>
+            <p>When multiple blog posts repeat the same syndicated news dispatch with zero new proof, EvidenceLens flags it as a <strong>Fragile Origin (Single Point of Failure)</strong>.</p>
+          </div>
+          <div className="guide-card">
+            <h4>🎯 4. Interactive Navigation</h4>
+            <p>
+              • Click any claim node or matrix row to <strong>fly the camera into that claim</strong>.<br />
+              • Drag to orbit in 3D, scroll to zoom in/out, press <kbd>Esc</kbd> to reset view.
+            </p>
+          </div>
+        </div>
+
+        <button className="ask-btn-demo" onClick={onClose} style={{ marginTop: "16px", width: "100%", padding: "10px", borderRadius: "10px", background: "var(--accent)", color: "#000", fontWeight: 600, border: 0 }}>
+          Got it, explore the evidence!
+        </button>
+      </motion.div>
     </motion.div>
   );
 }

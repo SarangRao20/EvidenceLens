@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Observatory from "./scene/Observatory.jsx";
 import Landing from "./ui/Landing.jsx";
 import Processing from "./ui/Processing.jsx";
-import { ClaimPanel, Dock, Ledger, TopBar } from "./ui/ReportUI.jsx";
+import { ClaimPanel, Dock, GuideModal, Ledger, TopBar } from "./ui/ReportUI.jsx";
 import { analyzeDemo, analyzeLive, checkApi, loadDemo } from "./lib/api.js";
 import { computeLayout } from "./lib/layout.js";
 
@@ -31,6 +31,7 @@ export default function App() {
   const [isDemoRun, setIsDemoRun] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [hoveredId, setHoveredId] = useState(null);
+  const [showGuide, setShowGuide] = useState(false);
   const job = useRef(null);
 
   useEffect(() => {
@@ -104,10 +105,13 @@ export default function App() {
 
       {stage === "report" && report && (
         <>
-          <TopBar report={report} onBack={reset} isDemo={isDemoRun} />
+          <TopBar report={report} onBack={reset} isDemo={isDemoRun} onToggleGuide={() => setShowGuide((v) => !v)} showGuide={showGuide} />
           <Dock report={report} selectedId={selectedId} hoveredId={hoveredId} onSelect={setSelectedId} onHover={setHoveredId} />
           <ClaimPanel report={report} claimId={selectedId} onClose={() => setSelectedId(null)} />
           <Ledger report={report} selectedId={selectedId} />
+          <AnimatePresence>
+            {showGuide && <GuideModal onClose={() => setShowGuide(false)} />}
+          </AnimatePresence>
         </>
       )}
     </div>
