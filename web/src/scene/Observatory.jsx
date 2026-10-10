@@ -4,8 +4,11 @@ import { Html, OrbitControls, QuadraticBezierLine, Sparkles, Stars } from "@reac
 import { Bloom, EffectComposer, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { SOURCE_TYPE, STATUS } from "../lib/colors";
+import { computeLayout } from "../lib/layout";
 
 const HOME = new THREE.Vector3(0, 6, 25);
+const NAV_W = 300; // left claim navigator covers this much width
+const DRAWER_W = 460; // right detail drawer, when open
 const ZERO = new THREE.Vector3();
 const clamp01 = (x) => Math.min(1, Math.max(0, x));
 const easeOutBack = (x) => {
@@ -142,6 +145,14 @@ function ClaimNode({ claim, matrix, pos, delay, selected, dimmed, hovered, onSel
         <icosahedronGeometry args={[0.95, 1]} />
         <meshBasicMaterial color={meta.color} wireframe transparent opacity={dimmed ? 0.08 : 0.35} toneMapped={false} />
       </mesh>
+      {hovered && !selected && (
+        <Html center position={[0, -1.7, 0]} zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
+          <div className="tooltip claim-tip" style={{ borderColor: meta.color }}>
+            <b style={{ color: meta.color }}>{claim.claim_id} · {meta.label}</b>
+            <div>{claim.text.length > 120 ? claim.text.slice(0, 117) + "…" : claim.text}</div>
+          </div>
+        </Html>
+      )}
       {matrix?.is_fragile && (
         <mesh ref={flicker} rotation={[Math.PI / 2.4, 0, 0]}>
           <torusGeometry args={[1.25, 0.025, 8, 64]} />
@@ -164,7 +175,7 @@ function ClaimNode({ claim, matrix, pos, delay, selected, dimmed, hovered, onSel
 }
 
 /* ---------- source node ---------- */
-function SourceNode({ source, pos, delay, related, dimmed, onHoverSource, showLabel }) {
+function SourceNode({ source, pos, delay, related, dimmed, onHoverSource, onPick, showLabel }) {
   const mesh = useRef();
   const mat = useRef();
   const born = useRef(null);
@@ -188,7 +199,7 @@ function SourceNode({ source, pos, delay, related, dimmed, onHoverSource, showLa
       ref={mesh}
       onPointerOver={(e) => { e.stopPropagation(); onHoverSource(source.source_id); document.body.style.cursor = "pointer"; }}
       onPointerOut={() => { onHoverSource(null); document.body.style.cursor = "auto"; }}
-      onClick={(e) => { e.stopPropagation(); window.open(source.url, "_blank", "noopener"); }}
+      onClick={(e) => { e.stopPropagation(); onPick(source.source_id); }}
     >
       <sphereGeometry args={[0.3, 20, 20]} />
       <meshStandardMaterial ref={mat} color={color} emissive={color} transparent roughness={0.4} toneMapped={false} />
@@ -260,14 +271,14 @@ function Pulse({ a, b, role, offset }) {
 }
 
 /* ---------- camera ---------- */
-function CameraRig({ controls, flying, focus, phase, panelOpen }) {
+function CameraRig({ controls, flying, focus, phase, panelOpen, resetNonce }) {
   const { camera, size } = useThree();
   const shift = useRef(0);
   useEffect(() => {
     flying.current = true;
     const id = setTimeout(() => (flying.current = false), 2400);
     return () => clearTimeout(id);
-  }, [focus, flying]);
+  }, [focus, flying, resetNonce]);
 
   useFrame((_, dt) => {
     const c = controls.current;
@@ -277,10 +288,9 @@ function CameraRig({ controls, flying, focus, phase, panelOpen }) {
       camera.position.lerp(focus ? focus.cam : HOME, k);
       c.target.lerp(focus ? focus.target : ZERO, k);
     }
-    // Keep the action centred in the space not covered by the dock / claim panel.
+    // Keep the action centred in the space not covered by the navigator / detail drawer.
     const wide = size.width > 900;
-    const dock = Math.min(560, size.width * 0.44), panel = Math.min(460, size.width * 0.38);
-    const want = phase === "report" && wide ? (dock - (panelOpen ? panel : 0)) / 2 : 0;
+    const want = phase === "report" && wide ? (NAV_W - (panelOpen ? DRAWER_W : 0)) / 2 : 0;
     shift.current = THREE.MathUtils.lerp(shift.current, want, 1 - Math.exp(-dt * 4));
     if (Math.abs(shift.current) > 0.5) camera.setViewOffset(size.width, size.height, -shift.current, 0, size.width, size.height);
     else camera.clearViewOffset();
@@ -290,10 +300,12 @@ function CameraRig({ controls, flying, focus, phase, panelOpen }) {
 }
 
 /* ---------- scene ---------- */
-function Scene({ report, layout, phase, progress, selectedId, hoveredId, onSelect, onHover }) {
+function Scene({ report, layout, phase, progress, selectedId, hoveredId, onSelect, onHover, resetNonce, autoRotate = true }) {
   const controls = useRef();
   const flying = useRef(false);
   const [hoverSource, setHoverSource] = useState(null);
+  const [pickedSource, setPickedSource] = useState(null);
+  useEffect(() => setPickedSource(null), [selectedId]);
 
   const matrixById = useMemo(
     () => Object.fromEntries((report?.evidence_matrix || []).map((m) => [m.claim_id, m])),
@@ -375,6 +387,7 @@ function Scene({ report, layout, phase, progress, selectedId, hoveredId, onSelec
               dimmed={hasSel && !related.has(s.source_id)}
               showLabel={related.has(s.source_id) || hoverSource === s.source_id}
               onHoverSource={setHoverSource}
+              onPick={setPickedSource}
             />
           ))}
           {links.map((l, i) => {
@@ -396,6 +409,24 @@ function Scene({ report, layout, phase, progress, selectedId, hoveredId, onSelec
               .map((l, i) => (
                 <Pulse key={`p-${l.source}-${l.role}`} a={layout.claimPos[l.claim]} b={layout.sourcePos[l.source]} role={l.role} offset={(i * 0.37) % 1} />
               ))}
+          {pickedSource && (() => {
+            const s = report.sources.find((x) => x.source_id === pickedSource);
+            const at = layout.sourcePos[pickedSource].clone().add(new THREE.Vector3(0, 1.1, 0));
+            return (
+              <Html position={at} center zIndexRange={[30, 0]}>
+                <div className="scene-card">
+                  <div className="sc-head">
+                    <b className="mono">{s.source_id}</b>
+                    <span className="tt-dom">{SOURCE_TYPE[s.source_type].label}</span>
+                    <button className="sc-x" onClick={() => setPickedSource(null)} aria-label="Dismiss source">✕</button>
+                  </div>
+                  <div className="sc-title">{s.title}</div>
+                  <div className="tt-dom">{s.domain}{s.published_at ? ` · ${s.published_at}` : ""}</div>
+                  <a className="sc-open" href={s.url} target="_blank" rel="noopener noreferrer">Open source ↗</a>
+                </div>
+              </Html>
+            );
+          })()}
           {hoverSource && (() => {
             const s = report.sources.find((x) => x.source_id === hoverSource);
             return (
@@ -416,11 +447,11 @@ function Scene({ report, layout, phase, progress, selectedId, hoveredId, onSelec
         dampingFactor={0.06}
         minDistance={5}
         maxDistance={45}
-        autoRotate={!hasSel && phase !== "processing"}
+        autoRotate={autoRotate && !hasSel && phase !== "processing"}
         autoRotateSpeed={0.45}
         onStart={() => (flying.current = false)}
       />
-      <CameraRig controls={controls} flying={flying} focus={focus} phase={phase} panelOpen={hasSel} />
+      <CameraRig controls={controls} flying={flying} focus={focus} phase={phase} panelOpen={hasSel} resetNonce={resetNonce} />
 
       <EffectComposer multisampling={0}>
         <Bloom mipmapBlur luminanceThreshold={0.2} intensity={1.15} radius={0.75} />
@@ -430,15 +461,17 @@ function Scene({ report, layout, phase, progress, selectedId, hoveredId, onSelec
   );
 }
 
-export default function Observatory(props) {
+export default function Observatory({ report, active = true, ...rest }) {
+  const layout = useMemo(() => (report ? computeLayout(report) : null), [report]);
   return (
     <Canvas
+      frameloop={active ? "always" : "never"}
       camera={{ position: HOME.toArray(), fov: 55, near: 0.1, far: 200 }}
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{ antialias: false, powerPreference: "high-performance", preserveDrawingBuffer: new URLSearchParams(window.location.search).has("capture") }}
-      onPointerMissed={() => props.onSelect(null)}
+      onPointerMissed={() => rest.onSelect?.(null)}
     >
-      <Scene {...props} />
+      <Scene {...rest} report={report} layout={layout} />
     </Canvas>
   );
 }
