@@ -344,6 +344,12 @@ def render_footer(report: Report):
 
 def render_report():
     report: Report = st.session_state.report
+    if report.sources and not report.claims:
+        st.warning(
+            "Sources were retrieved, but the claim-extraction step returned nothing. "
+            "This usually means the Gemini call failed (check `GEMINI_API_KEY` and "
+            "`GEMINI_MODEL` in `.env`)."
+        )
     render_header(report)
     render_matrix(report)
     render_claim_cards(report)
